@@ -1,10 +1,15 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
+const express = require('express'),
+    mongoose = require('mongoose'),
+    cors = require('cors'),
+    http = require('http'),
 
-const routes = require('./routes')
+    routes = require('./routes'),
+    { setupWebSocket } = require('./websocket')
 
 const app = express()
+const server = http.Server(app)
+
+setupWebSocket(server)
 
 mongoose.connect('mongodb+srv://DiegoFR:Freire15.@cluster0-wlpz2.mongodb.net/omnistack10', {
     useNewUrlParser: true,
@@ -15,4 +20,4 @@ app.use(cors())
 app.use(express.json())
 app.use(routes)
 
-app.listen(3333)
+server.listen(3333)

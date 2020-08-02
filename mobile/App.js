@@ -1,7 +1,9 @@
 import React from 'react'
-import { StatusBar } from 'react-native'
+import { StatusBar, LogBox } from 'react-native'
 
 import Routes from './src/routes'
+
+LogBox.ignoreAllLogs()
 
 export default function App() {
   return (
